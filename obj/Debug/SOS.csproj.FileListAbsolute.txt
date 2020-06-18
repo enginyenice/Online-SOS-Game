@@ -36,3 +36,5 @@ C:\Users\engin\Desktop\SOS\obj\Debug\SOS.Lobi.resources
 C:\Users\engin\Desktop\SOS\bin\Debug\Newtonsoft.Json.dll
 C:\Users\engin\Desktop\SOS\bin\Debug\Newtonsoft.Json.xml
 C:\Users\engin\Desktop\SOS\obj\Debug\SOS.Oyun.resources
+C:\Users\engin\Desktop\SOS\obj\Debug\SOS.Siralama.resources
+C:\Users\engin\Desktop\SOS\obj\Debug\SOS.SifreDegistir.resources

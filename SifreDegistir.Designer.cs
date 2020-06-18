@@ -1,6 +1,6 @@
 ﻿namespace SOS
 {
-    partial class Siralama
+    partial class SifreDegistir
     {
         /// <summary>
         /// Required designer variable.
@@ -28,43 +28,48 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.SiralamaList = new System.Windows.Forms.ListView();
+            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.button1 = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
-            // SiralamaList
+            // textBox1
             // 
-            this.SiralamaList.Font = new System.Drawing.Font("Microsoft Sans Serif", 12.25F);
-            this.SiralamaList.FullRowSelect = true;
-            this.SiralamaList.GridLines = true;
-            this.SiralamaList.HideSelection = false;
-            this.SiralamaList.Location = new System.Drawing.Point(12, 32);
-            this.SiralamaList.Name = "SiralamaList";
-            this.SiralamaList.Size = new System.Drawing.Size(450, 400);
-            this.SiralamaList.TabIndex = 0;
-            this.SiralamaList.UseCompatibleStateImageBehavior = false;
-            this.SiralamaList.View = System.Windows.Forms.View.Details;
+            this.textBox1.Location = new System.Drawing.Point(12, 12);
+            this.textBox1.Name = "textBox1";
+            this.textBox1.Size = new System.Drawing.Size(282, 20);
+            this.textBox1.TabIndex = 0;
+            // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(12, 39);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(281, 23);
+            this.button1.TabIndex = 1;
+            this.button1.Text = "Şifre Değiştir";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(372, 13);
+            this.label1.Location = new System.Drawing.Point(259, 65);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(35, 13);
-            this.label1.TabIndex = 1;
+            this.label1.TabIndex = 2;
             this.label1.Text = "label1";
             // 
-            // Siralama
+            // SifreDegistir
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(477, 450);
+            this.ClientSize = new System.Drawing.Size(306, 77);
             this.Controls.Add(this.label1);
-            this.Controls.Add(this.SiralamaList);
-            this.Name = "Siralama";
-            this.Text = "Siralama";
-            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Siralama_FormClosing);
-            this.Load += new System.EventHandler(this.Siralama_Load);
+            this.Controls.Add(this.button1);
+            this.Controls.Add(this.textBox1);
+            this.Name = "SifreDegistir";
+            this.Text = "SifreDegistir";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.SifreDegistir_FormClosing);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -72,7 +77,8 @@
 
         #endregion
 
-        private System.Windows.Forms.ListView SiralamaList;
+        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.Button button1;
         public System.Windows.Forms.Label label1;
     }
 }

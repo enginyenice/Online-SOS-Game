@@ -133,7 +133,35 @@ namespace SOS
         {
             Class.Login login = new Class.Login();
             login.offline(userID);
-            Application.Exit();
+            //Application.Exit();
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            Class.Login login = new Class.Login();
+            login.offline(userID);
+            this.Close();
+            Login girisPage = new Login();
+            girisPage.Show();
+
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            Class.Login login = new Class.Login();
+            //login.offline(userID);
+            this.Hide();
+            Siralama siralama = new Siralama();
+            siralama.label1.Text = userID.ToString();
+            siralama.Show();
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            SifreDegistir sifreDegistir = new SifreDegistir();
+            sifreDegistir.label1.Text = userID.ToString();
+            sifreDegistir.Show();
         }
     }
 }

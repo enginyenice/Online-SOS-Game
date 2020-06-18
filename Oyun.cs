@@ -20,6 +20,7 @@ namespace SOS
         private int OyunID, OyuncuID,SuandaSira;
         private string OyunCuAdi1, OyuncuAdi2;
         private int OyuncuPuan1, OyuncuPuan2;
+        private int Oyuncu1ID, Oyuncu2ID;
         public Oyun()
         {
             InitializeComponent();
@@ -33,6 +34,8 @@ namespace SOS
             OyuncuID = Int32.Parse(label2.Text);
 
             oyunData.oyuncuBilgileriCek(OyunID);
+            Oyuncu1ID = oyunData.Oyuncu1ID;
+            Oyuncu2ID = oyunData.Oyuncu2ID;
             OyunCuAdi1 = oyunData.Oyuncu1Adi;
             OyuncuAdi2 = oyunData.Oyuncu2Adi;
             OyuncuPuan1 = oyunData.Oyuncu1Puan;
@@ -70,6 +73,8 @@ namespace SOS
             if(gameOver == true)
             {
                 Siralama siralama = new Siralama();
+                siralama.label1.Text = OyuncuID.ToString();
+                oyunData.KullaniciGuncelle(Oyuncu1ID, OyuncuPuan1, Oyuncu2ID, OyuncuPuan2);
                 siralama.Show();
             } else
             {
@@ -213,6 +218,7 @@ namespace SOS
             GameOver();
             if (gameOver == true)
             {
+                //oyunData.KullaniciGuncelle(Oyuncu1ID, OyuncuPuan1, Oyuncu2ID, OyuncuPuan2);
                 Class.Login login = new Class.Login();
                 login.online(OyuncuID);
                 this.Close();
@@ -287,8 +293,11 @@ namespace SOS
                 oyunData.PuanGuncelle(OyunID, OyuncuID, (puan - dataPuan));
                 //oyunData.PuanGuncelle(OyunID, OyuncuID, (puan - dataPuan));
                 //Puan Guncelle
-                if(gameOver == true)
+                if (gameOver == true)
+                {
+                   // oyunData.KullaniciGuncelle(Oyuncu1ID, OyuncuPuan1, Oyuncu2ID, OyuncuPuan2);
                     oyunData.SiraDegistir(OyunID, OyuncuID);
+                }
 
             }
             oyunData.oyuncuBilgileriCek(OyunID);

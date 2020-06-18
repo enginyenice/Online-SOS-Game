@@ -300,7 +300,54 @@ namespace SOS.Class
             con.Close();
             return m;
         }
+        public void KullaniciGuncelle(int Oyuncu1,int Oyuncu1Skor,int Oyuncu2, int Oyuncu2Skor)
+        {
+            string sorgu = "";
+            if(Oyuncu1Skor > Oyuncu2Skor)
+            {
+                con.Open();
+                sorgu = "UPDATE kullanici SET galibiyet=galibiyet+" + 1 + " WHERE id=" + Oyuncu1 + "";
+                cmd = new MySqlCommand(sorgu, con);
+                cmd.ExecuteNonQuery();
+                con.Close();
 
+                con.Open();
+                sorgu = "UPDATE kullanici SET malubiyet=malubiyet+" + 1 + " WHERE id=" + Oyuncu2 + "";
+                cmd = new MySqlCommand(sorgu, con);
+                cmd.ExecuteNonQuery();
+                con.Close();
+
+            }
+            else if(Oyuncu2Skor > Oyuncu1Skor)
+            {
+                con.Open();
+                sorgu = "UPDATE kullanici SET galibiyet=galibiyet+" + 1 + " WHERE id=" + Oyuncu2 + "";
+                cmd = new MySqlCommand(sorgu, con);
+                cmd.ExecuteNonQuery();
+                con.Close();
+
+                con.Open();
+                sorgu = "UPDATE kullanici SET malubiyet=malubiyet+" + 1 + " WHERE id=" + Oyuncu1 + "";
+                cmd = new MySqlCommand(sorgu, con);
+                cmd.ExecuteNonQuery();
+                con.Close();
+            }
+
+            con.Open();
+            sorgu = "UPDATE kullanici SET avaraj=galibiyet-malubiyet WHERE id=" + Oyuncu1 + "";
+            cmd = new MySqlCommand(sorgu, con);
+            cmd.ExecuteNonQuery();
+            con.Close();
+
+            con.Open();
+            sorgu = "UPDATE kullanici SET avaraj=galibiyet-malubiyet WHERE id=" + Oyuncu2 + "";
+            cmd = new MySqlCommand(sorgu, con);
+            cmd.ExecuteNonQuery();
+            con.Close();
+
+
+
+        }
     }
     }
 

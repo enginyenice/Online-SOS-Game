@@ -100,6 +100,13 @@ namespace SOS.Class
             cmd.ExecuteNonQuery();
             con.Close();
         }
-
+        public void SifreDegistir(int id,string password)
+        {
+            con.Open();
+            string sorgu = "UPDATE kullanici SET password='" + password + "' WHERE id=" + id + "";
+            cmd = new MySqlCommand(sorgu, con);
+            cmd.ExecuteNonQuery();
+            con.Close();
+        }
     }
 }
