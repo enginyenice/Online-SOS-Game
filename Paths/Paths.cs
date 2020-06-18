@@ -8,6 +8,13 @@ namespace SOS.Paths
 {
     class Paths
     {
+        /*
+        public static string server = "sql12.freemysqlhosting.net";
+        public static string database = "sql12349296";
+        public static string uid = "sql12349296";
+        public static string password = "9wFSTYFULk";
+        */
+
         public static string server = "localhost";
         public static string database = "sosgame";
         public static string uid = "root";

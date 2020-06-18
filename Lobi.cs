@@ -114,6 +114,7 @@ namespace SOS
             {
                 label2.Text = "Davet Kabul Edildi.";
                 int gameID = lobi.GetGameID(userID);
+                lobi.SohbetOlustur(gameID);
                 Oyun oyun = new Oyun();
                 oyun.label1.Text = gameID.ToString();
                 oyun.label2.Text = userID.ToString();

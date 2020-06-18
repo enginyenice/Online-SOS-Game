@@ -169,7 +169,27 @@ namespace SOS.Class
             con.Close();
             return gameID;
         }
+        public void SohbetOlustur(int gameID)
+        {
+            con.Open();
+            List<Datas.User> onlineList = new List<Datas.User>();
+            string sorgu = "SELECT SahipID,MisafirID FROM oyun WHERE id = " + gameID + "";
+            cmd = new MySqlCommand(sorgu, con);
+            dr = cmd.ExecuteReader();
+            int SahipID = 0, MisafirID = 0;
+            while (dr.Read())
+            {
+                SahipID= Int32.Parse(dr[0].ToString());
+                MisafirID = Int32.Parse(dr[0].ToString());
+            }
+            con.Close();
 
+            con.Open();
+            sorgu = "INSERT INTO sohbet (oyunID,sahipID,misafirID) VALUES (" + gameID + "," + SahipID + ","+MisafirID+")";
+            cmd = new MySqlCommand(sorgu, con);
+            cmd.ExecuteNonQuery();
+            con.Close();
+        }
 
     }
 }

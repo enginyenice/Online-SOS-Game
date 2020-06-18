@@ -1,4 +1,8 @@
-﻿using System;
+﻿/*
+ TODO: Seçim yapmadan tamam basılıyor...
+ */
+
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -24,6 +28,10 @@ namespace SOS
         private void Oyun_Load(object sender, EventArgs e)
         {
             board();
+            SiraTimer.Start();
+            OyunID = Int32.Parse(label1.Text);
+            OyuncuID = Int32.Parse(label2.Text);
+
             oyunData.oyuncuBilgileriCek(OyunID);
             OyunCuAdi1 = oyunData.Oyuncu1Adi;
             OyuncuAdi2 = oyunData.Oyuncu2Adi;
@@ -33,10 +41,6 @@ namespace SOS
             Oyuncu2.Text = OyuncuAdi2;
             Oyuncu1Skor.Text = OyuncuPuan1.ToString();
             Oyuncu2Skor.Text = OyuncuPuan2.ToString();
-
-            SiraTimer.Start();
-            OyunID = Int32.Parse(label1.Text);
-            OyuncuID = Int32.Parse(label2.Text);
 
         }
         bool gameOver = false;
@@ -62,7 +66,29 @@ namespace SOS
 
         private void Oyun_FormClosing(object sender, FormClosingEventArgs e)
         {
-            Application.Exit();
+            this.Hide();
+            if(gameOver == true)
+            {
+                Siralama siralama = new Siralama();
+                siralama.Show();
+            } else
+            {
+                Lobi lobi = new Lobi();
+                lobi.label1.Text = OyuncuID.ToString();
+                lobi.Show();
+            }
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            if(MesajTxt.Text.Length > 0)
+            {
+                oyunData.SohbetGonder(OyunID, OyuncuID, MesajTxt.Text);
+                MesajTxt.Text = "";
+            } else
+            {
+                MessageBox.Show("Mesaj Yok");
+            }
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -72,7 +98,13 @@ namespace SOS
                 iterDurum = 0;
                 oyunData.board[kesinY, kesinX] = value;
                 oyunKontrol();
+                kesinX = -1;
+                kesinY = -1;
+            } else
+            {
+                MessageBox.Show("Seçim yapmadınız...");
             }
+
         }
 
         int siraBende = 0;
@@ -86,16 +118,19 @@ namespace SOS
                 return "O";
 
         }
+
+        string sonSohbet = "";
         private void SiraTimer_Tick(object sender, EventArgs e)
         {
-            if(gameOver == true)
+            string sohbet = oyunData.SohbetGetir(OyunID);
+            if(sohbet != sonSohbet)
             {
-                Class.Login login = new Class.Login();
-                login.online(OyuncuID);
-                this.Close();
-                Siralama siralama = new Siralama();
-                siralama.Show();
+                sonSohbet = sohbet;
+                sohbetPenceresi.Clear();
+                sohbetPenceresi.Text = sonSohbet;
             }
+
+
             SuandaSira = oyunData.SiraGetir(OyunID);
             if (SuandaSira == OyuncuID)
             {
@@ -167,40 +202,22 @@ namespace SOS
                             }
                         }
                     }
-
-
-
-
-
-
-
-
-
                     siraBende = 1;
-
                 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
             }
             else
             { button1.Visible = false;
                 siraBende = 0;
             }
+            GameOver();
+            if (gameOver == true)
+            {
+                Class.Login login = new Class.Login();
+                login.online(OyuncuID);
+                this.Close();
+            }
+
         }
         private void oyunKontrol()
         {
@@ -256,13 +273,13 @@ namespace SOS
                     }
                 }
             }
-            if(puan == dataPuan) //Puan Alamadı.
+            GameOver();
+            if (puan == dataPuan) //Puan Alamadı.
             {
                 //Harita Gonder
                 oyunData.HaritaGonder(OyunID);
                 //Sira Degistir
-                oyunData.SiraDegistir(OyunID, OyuncuID);
-                
+                oyunData.SiraDegistir(OyunID, OyuncuID);         
             }
             else //Puan Aldı
             {
@@ -270,9 +287,21 @@ namespace SOS
                 oyunData.PuanGuncelle(OyunID, OyuncuID, (puan - dataPuan));
                 //oyunData.PuanGuncelle(OyunID, OyuncuID, (puan - dataPuan));
                 //Puan Guncelle
+                if(gameOver == true)
+                    oyunData.SiraDegistir(OyunID, OyuncuID);
+
             }
-            GameOver();
-            
+            oyunData.oyuncuBilgileriCek(OyunID);
+            OyunCuAdi1 = oyunData.Oyuncu1Adi;
+            OyuncuAdi2 = oyunData.Oyuncu2Adi;
+            OyuncuPuan1 = oyunData.Oyuncu1Puan;
+            OyuncuPuan2 = oyunData.Oyuncu2Puan;
+            Oyuncu1.Text = OyunCuAdi1;
+            Oyuncu2.Text = OyuncuAdi2;
+            Oyuncu1Skor.Text = OyuncuPuan1.ToString();
+            Oyuncu2Skor.Text = OyuncuPuan2.ToString();
+
+
         }
         private void board()
         {

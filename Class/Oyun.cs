@@ -12,6 +12,7 @@ namespace SOS.Class
     {
         public string Oyuncu1Adi, Oyuncu2Adi;
         public int Oyuncu1Puan, Oyuncu2Puan;
+        public int Oyuncu1ID, Oyuncu2ID;
         Paths.Paths paths = new Paths.Paths();
         private readonly MySqlConnection con = new MySqlConnection();
         private MySqlCommand cmd;
@@ -222,6 +223,8 @@ namespace SOS.Class
             con.Close();
             Oyuncu1Puan = sahipP;
             Oyuncu2Puan = misafirP;
+            Oyuncu1ID = sahip;
+            Oyuncu2ID = misafir;
 
 
             con.Open();
@@ -250,6 +253,54 @@ namespace SOS.Class
             Oyuncu2Adi = MisafirAdi;
 
         }
+        public void SohbetGonder(int OyunID,int OyuncuID,string mesaj)
+        {
+            con.Open();
+            string sorgu = "SELECT mesaj FROM sohbet WHERE oyunID= " + OyunID + "";
+            cmd = new MySqlCommand(sorgu, con);
+            dr = cmd.ExecuteReader();
+            string m = "";
+            while (dr.Read())
+            {
+                m = dr[0].ToString();
+            }
+            con.Close();
+
+
+
+            con.Open();
+            
+            if (OyuncuID == Oyuncu1ID)
+            {
+                string text = Oyuncu1Adi + " :" + mesaj +"\n"+ m;
+                //UPDATE oyun SET SahipPuan=SahipPuan+"+KazanilanPuan+" WHERE id="+Oyun+"
+
+                sorgu = "UPDATE sohbet SET sahipID="+Oyuncu1ID+",mesaj='"+text+"' WHERE oyunID="+OyunID+" ";
+
+            } else
+            {
+                string text = Oyuncu1Adi + " :" + mesaj + "\n" + m;
+                sorgu = "UPDATE sohbet SET misafirID=" + Oyuncu2ID + ",mesaj='" + text + "' WHERE oyunID=" + OyunID + " ";
+            }
+            cmd = new MySqlCommand(sorgu, con);
+            cmd.ExecuteNonQuery();
+            con.Close();
+        }
+        public string SohbetGetir(int OyunID)
+        {
+            con.Open();
+            string sorgu = "SELECT mesaj FROM sohbet WHERE oyunID= " + OyunID + "";
+            cmd = new MySqlCommand(sorgu, con);
+            dr = cmd.ExecuteReader();
+            string m = "";
+            while (dr.Read())
+            {
+                m = dr[0].ToString();
+            }
+            con.Close();
+            return m;
+        }
+
     }
     }
 

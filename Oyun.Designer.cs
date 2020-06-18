@@ -37,12 +37,15 @@
             this.SiraTimer = new System.Windows.Forms.Timer(this.components);
             this.Oyuncu1Skor = new System.Windows.Forms.Label();
             this.Oyuncu2Skor = new System.Windows.Forms.Label();
+            this.MesajTxt = new System.Windows.Forms.TextBox();
+            this.button2 = new System.Windows.Forms.Button();
+            this.sohbetPenceresi = new System.Windows.Forms.RichTextBox();
             this.SuspendLayout();
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(753, 2);
+            this.label1.Location = new System.Drawing.Point(850, 415);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(35, 13);
             this.label1.TabIndex = 0;
@@ -51,7 +54,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(753, 15);
+            this.label2.Location = new System.Drawing.Point(850, 428);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(35, 13);
             this.label2.TabIndex = 1;
@@ -77,11 +80,11 @@
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(308, 2);
+            this.button1.Location = new System.Drawing.Point(12, 25);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(123, 26);
+            this.button1.Size = new System.Drawing.Size(250, 26);
             this.button1.TabIndex = 4;
-            this.button1.Text = "Tamam";
+            this.button1.Text = "Sıra Sende Seçimini Yap ve Bana Tıkla";
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
@@ -108,11 +111,40 @@
             this.Oyuncu2Skor.TabIndex = 6;
             this.Oyuncu2Skor.Text = "Oyun ID: ";
             // 
+            // MesajTxt
+            // 
+            this.MesajTxt.Location = new System.Drawing.Point(487, 418);
+            this.MesajTxt.Name = "MesajTxt";
+            this.MesajTxt.Size = new System.Drawing.Size(205, 20);
+            this.MesajTxt.TabIndex = 8;
+            // 
+            // button2
+            // 
+            this.button2.Location = new System.Drawing.Point(698, 415);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(92, 23);
+            this.button2.TabIndex = 9;
+            this.button2.Text = "Gönder";
+            this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
+            // 
+            // sohbetPenceresi
+            // 
+            this.sohbetPenceresi.Font = new System.Drawing.Font("Microsoft YaHei", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
+            this.sohbetPenceresi.Location = new System.Drawing.Point(487, 12);
+            this.sohbetPenceresi.Name = "sohbetPenceresi";
+            this.sohbetPenceresi.Size = new System.Drawing.Size(299, 385);
+            this.sohbetPenceresi.TabIndex = 10;
+            this.sohbetPenceresi.Text = "";
+            // 
             // Oyun
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(798, 450);
+            this.Controls.Add(this.sohbetPenceresi);
+            this.Controls.Add(this.button2);
+            this.Controls.Add(this.MesajTxt);
             this.Controls.Add(this.Oyuncu2Skor);
             this.Controls.Add(this.Oyuncu1Skor);
             this.Controls.Add(this.button1);
@@ -138,5 +170,8 @@
         private System.Windows.Forms.Timer SiraTimer;
         private System.Windows.Forms.Label Oyuncu1Skor;
         private System.Windows.Forms.Label Oyuncu2Skor;
+        private System.Windows.Forms.TextBox MesajTxt;
+        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.RichTextBox sohbetPenceresi;
     }
 }
