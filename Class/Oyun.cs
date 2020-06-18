@@ -279,7 +279,7 @@ namespace SOS.Class
 
             } else
             {
-                string text = Oyuncu1Adi + " :" + mesaj + "\n" + m;
+                string text = Oyuncu2Adi + " :" + mesaj + "\n" + m;
                 sorgu = "UPDATE sohbet SET misafirID=" + Oyuncu2ID + ",mesaj='" + text + "' WHERE oyunID=" + OyunID + " ";
             }
             cmd = new MySqlCommand(sorgu, con);

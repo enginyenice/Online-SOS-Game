@@ -42,7 +42,6 @@
             this.username.Name = "username";
             this.username.Size = new System.Drawing.Size(262, 20);
             this.username.TabIndex = 0;
-            this.username.Text = "engin";
             // 
             // password
             // 
@@ -51,7 +50,6 @@
             this.password.PasswordChar = '•';
             this.password.Size = new System.Drawing.Size(262, 20);
             this.password.TabIndex = 1;
-            this.password.Text = "123456";
             // 
             // LoginBtn
             // 

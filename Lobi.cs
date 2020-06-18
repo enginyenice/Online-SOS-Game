@@ -61,6 +61,9 @@ namespace SOS
                 else
                 {
                     lobi.DavetReddet(userID, SahipID);
+                    timer1.Start();
+                    timer2.Start();
+
                 }
             }
         
